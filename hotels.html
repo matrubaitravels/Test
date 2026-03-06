@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matrubai Travels | Hotels</title>
+
+<link rel="icon" type="image/png" href="/favicon.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+<style>
+  body{
+    background: linear-gradient(180deg,#f6f7fb 0%,#ffffff 60%);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  }
+  .nav-glass{
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(15,23,42,0.08);
+    box-shadow:0 10px 40px rgba(0,0,0,0.08);
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,#f59e0b,#fbbf24);
+    font-weight:800;
+    border-radius:999px;
+    padding:12px 24px;
+    box-shadow:0 12px 30px rgba(245,158,11,0.3);
+    transition:0.2s;
+    display:inline-flex;
+    align-items:center;
+    gap:.6rem;
+    justify-content:center;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); }
+  .hero-overlay{ background:linear-gradient(to right,rgba(0,0,0,0.65),rgba(0,0,0,0.2)); }
+  .sticky-whatsapp{
+    position:fixed;
+    bottom:18px;
+    right:18px;
+    background:#25D366;
+    color:white;
+    padding:14px 18px;
+    border-radius:999px;
+    box-shadow:0 14px 45px rgba(0,0,0,0.25);
+    z-index:9999;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/917892991040?text=Hi%20I%20want%20to%20book%20a%20hotel"
+   class="sticky-whatsapp" target="_blank" rel="noreferrer">
+  <i class="fab fa-whatsapp text-xl"></i> Chat Now
+</a>
+
+<!-- NAVBAR -->
+<header class="sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 py-3">
+    <div class="nav-glass rounded-2xl px-6 py-3 flex justify-between items-center">
+
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://raw.githubusercontent.com/matrubaitravels/Travels/refs/heads/master/logo-1.jpeg"
+             class="w-10 h-10 rounded-full object-cover" alt="Matrubai Travels logo">
+        <div>
+          <div class="font-bold text-lg">Matrubai Travels</div>
+          <div class="text-xs text-gray-500">Premium travel solutions</div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex gap-8 font-semibold text-gray-700">
+        <a href="index.html">Flights</a>
+        <a href="packages.html">Packages</a>
+        <a href="hotels.html" class="text-black">Hotels</a>
+        <a href="buses.html">Buses</a>
+        <a href="services.html">Services</a>
+        <a href="passport.html">Passport</a>
+      </nav>
+
+      <a href="#search" class="btn-primary">Book Hotel</a>
+
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative h-[520px] flex items-center justify-center text-white">
+
+  <!-- ✅ VARANASI HERO (your chosen photo) -->
+  <img
+    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=2400&q=80"
+    data-primary="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=2400&q=80"
+    data-fallback="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=2400&q=80"
+    class="absolute inset-0 w-full h-full object-cover"
+    alt="Hotels & stays hero"
+    onerror="this.onerror=null; this.src=this.dataset.fallback;"
+  />
+
+  <div class="absolute inset-0 hero-overlay"></div>
+
+  <div class="relative z-10 text-center px-4">
+    <h1 class="text-4xl md:text-6xl font-extrabold">Find & Book Premium Hotels</h1>
+    <p class="mt-4 text-lg opacity-90">
+      Best stays across India • Verified properties • Fast confirmation
+    </p>
+  </div>
+
+</section>
+
+<!-- SEARCH BOX -->
+<section id="search" class="-mt-20 relative z-20">
+  <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl p-8">
+
+    <form action="enquire.html" method="GET">
+      <input type="hidden" name="type" value="Hotel Request">
+
+      <div class="grid md:grid-cols-4 gap-6">
+        <div>
+          <label class="font-semibold text-sm">City / Destination</label>
+          <input name="destination" required
+                 class="w-full mt-2 p-3 rounded-xl border"
+                 placeholder="Delhi, Kochi, Varanasi...">
+        </div>
+
+        <div>
+          <label class="font-semibold text-sm">Check-in</label>
+          <input type="date" name="checkin" required
+                 class="w-full mt-2 p-3 rounded-xl border">
+        </div>
+
+        <div>
+          <label class="font-semibold text-sm">Check-out</label>
+          <input type="date" name="checkout" required
+                 class="w-full mt-2 p-3 rounded-xl border">
+        </div>
+
+        <div>
+          <label class="font-semibold text-sm">Guests</label>
+          <input type="number" name="guests" value="2" min="1"
+                 class="w-full mt-2 p-3 rounded-xl border">
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <button class="btn-primary text-lg" type="submit">
+          <i class="fa fa-search"></i> Search Hotels
+        </button>
+      </div>
+    </form>
+
+  </div>
+</section>
+
+<!-- POPULAR DESTINATIONS -->
+<section class="py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-10 text-center">Popular Destinations</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- ✅ VARANASI (your chosen photo link) -->
+      <div class="relative rounded-2xl overflow-hidden shadow-xl">
+        <img
+          src="https://images.unsplash.com/photo-1599831069477-b2acdc0bcb91?auto=format&fit=crop&w=2400&q=85"
+            alt="Varanasi ghats at night" />
+        <div class="absolute inset-0 bg-black/45 flex items-end p-6 text-white">
+          <div>
+            <h3 class="text-2xl font-bold">Varanasi</h3>
+            <p class="opacity-90">Spiritual ghats & heritage stays</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ KOCHI (your chosen photo link) -->
+      <div class="relative rounded-2xl overflow-hidden shadow-xl">
+        <img
+          src="https://images.unsplash.com/photo-1590123732197-e7079d2ceb89?auto=format&fit=crop&w=2400&q=85"
+          alt="Kochi chinese fishing nets" />
+        <div class="absolute inset-0 bg-black/45 flex items-end p-6 text-white">
+          <div>
+            <h3 class="text-2xl font-bold">Kochi</h3>
+            <p class="opacity-90">Beach resorts & coastal luxury</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-100 py-10 mt-10">
+  <div class="max-w-7xl mx-auto px-4 text-center text-gray-600">
+    <p class="font-semibold">© 2026 Matrubai Travels</p>
+    <p>Travel Smart. Travel Easy.</p>
+  </div>
+</footer>
+
+</body>
+</html>

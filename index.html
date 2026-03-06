@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrubai Travels | Flights</title>
+
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --gold-1:#f59e0b;
+      --gold-2:#fbbf24;
+      --ink:#0b1220;
+      --muted:#54606f;
+      --card-border:rgba(15,23,42,.08);
+      --shadow: 0 18px 55px rgba(2,6,23,.08);
+    }
+    html{ scroll-behavior:smooth; }
+    body{
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(59,130,246,0.10), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(245,158,11,0.12), transparent 55%),
+        linear-gradient(180deg, #f6f7fb 0%, #ffffff 40%, #ffffff 100%);
+    }
+
+    /* Sticky nav */
+    .nav-glass{
+      background: rgba(255,255,255,0.76);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(15,23,42,0.08);
+      box-shadow: 0 18px 50px rgba(2,6,23,0.10);
+    }
+
+    /* Cards */
+    .p-card{
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow: var(--shadow);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .p-card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 26px 70px rgba(2,6,23,0.12);
+      border-color: rgba(245,158,11,0.28);
+    }
+
+    /* Buttons */
+    .btn-primary{
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+      color: #0b1220;
+      font-weight: 900;
+      border-radius: 999px;
+      padding: 12px 18px;
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+      box-shadow: 0 14px 40px rgba(245,158,11,0.22);
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      justify-content:center;
+    }
+    .btn-primary:hover{ transform: translateY(-2px); filter: brightness(1.03); box-shadow:0 18px 55px rgba(245,158,11,0.26); }
+
+    .btn-soft{
+      background: rgba(15,23,42,0.04);
+      border: 1px solid rgba(15,23,42,0.10);
+      color: rgba(15,23,42,0.92);
+      font-weight: 900;
+      border-radius: 999px;
+      padding: 12px 16px;
+      transition: transform .18s ease, background .18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      justify-content:center;
+    }
+    .btn-soft:hover{ transform: translateY(-2px); background: rgba(15,23,42,0.06); }
+
+    /* Badge */
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(2,6,23,0.05);
+      border: 1px solid rgba(2,6,23,0.10);
+      font-weight: 900;
+      font-size: 12px;
+      color: rgba(2,6,23,0.75);
+      letter-spacing: .02em;
+    }
+    .badge-gold{
+      background: rgba(245,158,11,0.14);
+      border: 1px solid rgba(245,158,11,0.28);
+    }
+
+    /* Hero carousel */
+    .hero-frame{
+      border-radius: 28px;
+      overflow:hidden;
+      border: 1px solid rgba(15,23,42,0.10);
+      box-shadow: 0 30px 80px rgba(2,6,23,0.12);
+      background:#fff;
+      position:relative;
+    }
+    .hero-slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition: opacity .8s ease;
+    }
+    .hero-slide.active{ opacity:1; }
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.88));
+      pointer-events:none;
+    }
+    .hero-caption{
+      position:absolute;
+      left:18px;
+      bottom:16px;
+      right:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(15,23,42,0.10);
+      border-radius: 18px;
+      padding: 12px 14px;
+    }
+
+    /* Airline slider */
+    .logo-card{
+      width: 240px;
+      min-width: 240px;
+      height: 120px;
+      border-radius: 18px;
+      background:#fff;
+      border:1px solid rgba(15,23,42,0.08);
+      box-shadow: 0 14px 40px rgba(2,6,23,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .logo-card:hover{ transform: translateY(-3px); box-shadow:0 18px 55px rgba(2,6,23,0.10); }
+    .logo-card img{
+      max-height: 56px;
+      max-width: 170px;
+      object-fit: contain;
+      filter: saturate(1.05);
+    }
+
+    /* ✅ ONLY ADDITION: airline name style */
+    .logo-name{
+      margin-top: 10px;
+      font-weight: 900;
+      font-size: 13px;
+      color: rgba(15,23,42,0.82);
+      text-align:center;
+      line-height: 1.15;
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .slider-wrap{
+      position:relative;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.60);
+      border: 1px solid rgba(15,23,42,0.08);
+      box-shadow: 0 20px 60px rgba(2,6,23,0.08);
+      padding: 18px;
+    }
+    .slider{
+      display:flex;
+      gap: 18px;
+      overflow-x:auto;
+      scroll-behavior:smooth;
+      padding: 8px 8px 12px;
+    }
+    .slider::-webkit-scrollbar{ height: 10px; }
+    .slider::-webkit-scrollbar-thumb{ background: rgba(2,6,23,0.12); border-radius: 999px; }
+    .slider-btn{
+      position:absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width:46px;
+      height:46px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(15,23,42,0.12);
+      box-shadow: 0 18px 55px rgba(2,6,23,0.16);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition: transform .15s ease;
+      z-index:5;
+    }
+    .slider-btn:hover{ transform: translateY(-50%) scale(1.04); }
+    .slider-btn.left{ left: 12px; }
+    .slider-btn.right{ right: 12px; }
+
+    /* Reviews band */
+    .dark-band{
+      background:
+        radial-gradient(900px 500px at 50% 0%, rgba(255,255,255,0.10), transparent 55%),
+        linear-gradient(180deg, #0b0f1a 0%, #070912 100%);
+      color:#fff;
+    }
+    .dark-card{
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 26px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    /* WhatsApp floating */
+    .sticky-whatsapp{
+      position:fixed;
+      bottom:18px;
+      right:18px;
+      background:#25D366;
+      color:white;
+      padding:14px 18px;
+      border-radius:999px;
+      box-shadow:0 14px 45px rgba(0,0,0,0.25);
+      z-index:9999;
+      font-weight:900;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .2s ease;
+    }
+    .sticky-whatsapp:hover{ transform: translateY(-2px); }
+
+    /* ===== FOOTER (KEEP AS IS) ===== */
+    .footer-premium{
+      background: linear-gradient(180deg, #f4f5f8 0%, #eef0f4 100%);
+      border-top: 1px solid rgba(15,23,42,0.10);
+      position:relative;
+    }
+    .footer-premium:before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height:3px;
+      background: linear-gradient(90deg, rgba(245,158,11,0.10), rgba(245,158,11,0.55), rgba(245,158,11,0.10));
+    }
+    .f-link{
+      color: rgba(15,23,42,0.72);
+      font-weight: 700;
+      transition: color .15s ease;
+    }
+    .f-link:hover{ color: rgba(15,23,42,0.95); text-decoration: underline; }
+    .f-title{
+      font-weight: 900;
+      letter-spacing:.02em;
+      color: rgba(15,23,42,0.92);
+    }
+    .f-title.gold{ color: rgba(245,158,11,0.95); }
+  </style>
+</head>
+
+<body>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/917892991040?text=Hi%20Matrubai%20Travels%2C%20I%20want%20to%20book%20a%20flight"
+     class="sticky-whatsapp" target="_blank" rel="noreferrer">
+    <i class="fab fa-whatsapp text-xl"></i> Chat Now
+  </a>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+      <div class="nav-glass rounded-2xl px-4 md:px-6 py-3 flex items-center justify-between gap-4">
+
+        <a href="index.html" class="flex items-center gap-3 min-w-[220px]">
+          <img src="https://raw.githubusercontent.com/matrubaitravels/Travels/refs/heads/master/logo-1.jpeg"
+               class="w-10 h-10 rounded-full bg-white p-1 object-cover" alt="Matrubai Travels logo">
+          <div class="leading-tight">
+            <div class="font-extrabold tracking-wide text-slate-900">Matrubai Travels</div>
+            <div class="text-xs text-slate-600">Premium travel solutions</div>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-7 font-extrabold text-slate-700">
+          <a href="#flights" class="hover:text-slate-900 transition">Flights</a>
+          <a href="packages.html" class="hover:text-slate-900 transition">Packages</a>
+          <a href="hotels.html" class="hover:text-slate-900 transition">Hotels</a>
+          <a href="buses.html" class="hover:text-slate-900 transition">Buses</a>
+          <a href="services.html" class="hover:text-slate-900 transition">Services</a>
+          <a href="passport.html" class="hover:text-slate-900 transition">Passport</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button class="btn-soft hidden sm:inline-flex" onclick="openEnquiry('Get Quote')">
+            <i class="fa-solid fa-bolt"></i> Get Quote
+          </button>
+          <button class="btn-primary" onclick="openEnquiry('Flight Booking')">
+            Book Now <i class="fa-solid fa-rocket"></i>
+          </button>
+
+          <button class="lg:hidden btn-soft !px-4" onclick="toggleMobileNav()" aria-label="Open menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobileNav" class="hidden mt-3 nav-glass rounded-2xl p-4 lg:hidden">
+        <div class="grid gap-3 font-extrabold text-slate-800">
+          <a href="#flights" onclick="toggleMobileNav()" class="py-2">Flights</a>
+          <a href="packages.html" class="py-2">Packages</a>
+          <a href="hotels.html" class="py-2">Hotels</a>
+          <a href="buses.html" class="py-2">Buses</a>
+          <a href="services.html" class="py-2">Services</a>
+          <a href="passport.html" class="py-2">Passport</a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="py-10 md:py-14" id="flights">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+        <div>
+          <div class="badge badge-gold mb-4">
+            <i class="fa-solid fa-shield-heart"></i>
+            Premium coordination • Transparent pricing • Fast confirmation
+          </div>
+
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
+            Flight bookings with <span class="text-amber-600">premium support</span>
+          </h1>
+
+          <p class="text-slate-600 mt-4 text-lg">
+            Domestic & International • Multi-city • Student fares • Corporate bookings • Priority WhatsApp assistance.
+          </p>
+
+          <div class="mt-7 flex flex-col sm:flex-row gap-4">
+            <button class="btn-primary" onclick="openEnquiry('Flight Booking')">
+              <i class="fa-solid fa-plane-departure"></i> Get Flight Quote
+            </button>
+            <a href="#airlines" class="btn-soft">
+              <i class="fa-solid fa-chevron-down"></i> See Airlines
+            </a>
+          </div>
+
+          <div class="mt-8 grid sm:grid-cols-3 gap-4 text-sm">
+            <div class="p-card p-4">
+              <div class="font-extrabold text-slate-900">Quick Quote</div>
+              <div class="text-slate-600 mt-1">Fast response</div>
+            </div>
+            <div class="p-card p-4">
+              <div class="font-extrabold text-slate-900">Multi-city</div>
+              <div class="text-slate-600 mt-1">Any route</div>
+            </div>
+            <div class="p-card p-4">
+              <div class="font-extrabold text-slate-900">Support</div>
+              <div class="text-slate-600 mt-1">WhatsApp help</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Carousel (3 images every 3 seconds) -->
+        <div class="hero-frame h-[360px] md:h-[520px]">
+          <div class="hero-slide active">
+            <img class="w-full h-full object-cover"
+                 src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=2400&q=85"
+                 alt="Aircraft wing over clouds">
+          </div>
+          <div class="hero-slide">
+            <img class="w-full h-full object-cover"
+                 src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2400&q=85"
+                 alt="Aircraft takeoff">
+          </div>
+          <div class="hero-slide">
+            <img class="w-full h-full object-cover"
+                 src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2400&q=85"
+                 alt="Aircraft over city skyline">
+          </div>
+
+          <div class="hero-overlay"></div>
+
+          <div class="hero-caption">
+            <div class="font-extrabold text-slate-900">Dedicated flight advisor</div>
+            <button class="btn-primary !py-2 !px-4" onclick="openEnquiry('Flight Booking')">
+              Book <i class="fa-solid fa-ticket"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP ROUTES -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-end justify-between gap-6 flex-wrap">
+        <div>
+          <div class="badge badge-gold mb-3"><i class="fa-solid fa-plane"></i> Popular</div>
+          <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900">Top routes</h2>
+          <p class="text-slate-600 mt-2">Fast quotes • Best timings • Smooth coordination</p>
+        </div>
+        <button class="btn-primary" onclick="openEnquiry('Book Any Route')">
+          Book Any Route <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <div class="p-card">
+          <img class="w-full h-44 object-cover"
+               src="https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1600&q=80"
+               alt="India Gate, New Delhi">
+          <div class="p-6">
+            <div class="font-extrabold text-lg text-slate-900">Bangalore (BLR) → Delhi (DEL)</div>
+            <div class="text-slate-600 mt-2">Fast quote • Best timings</div>
+            <div class="mt-5">
+              <button class="btn-soft w-full" onclick="openEnquiry('Route: BLR to DEL')">Get Quote <i class="fa-solid fa-plane"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-card">
+          <img class="w-full h-44 object-cover"
+               src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80"
+               alt="Dubai skyline with Burj Khalifa">
+          <div class="p-6">
+            <div class="font-extrabold text-lg text-slate-900">Mumbai (BOM) → Dubai (DXB)</div>
+            <div class="text-slate-600 mt-2">Popular international route</div>
+            <div class="mt-5">
+              <button class="btn-soft w-full" onclick="openEnquiry('Route: BOM to DXB')">Get Quote <i class="fa-solid fa-plane"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-card">
+          <img class="w-full h-44 object-cover"
+               src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1600&q=80"
+               alt="Singapore skyline">
+          <div class="p-6">
+            <div class="font-extrabold text-lg text-slate-900">India → Singapore (SIN)</div>
+            <div class="text-slate-600 mt-2">Leisure & business</div>
+            <div class="mt-5">
+              <button class="btn-soft w-full" onclick="openEnquiry('Route: India to SIN')">Get Quote <i class="fa-solid fa-plane"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA block -->
+      <div class="mt-10 p-card !rounded-[28px] overflow-hidden">
+        <div class="grid lg:grid-cols-2">
+          <div class="p-8 md:p-10">
+            <div class="badge badge-gold mb-4"><i class="fa-solid fa-circle-check"></i> Dedicated advisor</div>
+            <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900">Ready to book your flight?</h3>
+            <p class="text-slate-600 mt-3 text-lg">Transparent pricing • Priority support • Fast confirmation</p>
+
+            <div class="mt-6 grid sm:grid-cols-3 gap-3 text-sm">
+              <div class="p-card p-4 !shadow-none">
+                <div class="font-extrabold text-slate-900">Domestic + Intl</div>
+                <div class="text-slate-600 mt-1">All routes</div>
+              </div>
+              <div class="p-card p-4 !shadow-none">
+                <div class="font-extrabold text-slate-900">Multi-city</div>
+                <div class="text-slate-600 mt-1">Complex trips</div>
+              </div>
+              <div class="p-card p-4 !shadow-none">
+                <div class="font-extrabold text-slate-900">WhatsApp</div>
+                <div class="text-slate-600 mt-1">Priority help</div>
+              </div>
+            </div>
+
+            <div class="mt-7 flex flex-col sm:flex-row gap-4">
+              <button class="btn-primary" onclick="openEnquiry('Flight Booking')">Book Flight Now <i class="fa-solid fa-plane-departure"></i></button>
+              <button class="btn-soft" onclick="openEnquiry('Flight Quote')">Get Quote <i class="fa-solid fa-bolt"></i></button>
+            </div>
+
+            <div class="text-slate-500 mt-4 text-sm font-semibold">
+              Secure enquiry • Advisor follow-up • No hidden charges
+            </div>
+          </div>
+
+          <div class="relative">
+            <img class="w-full h-full object-cover"
+                 src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2400&q=85"
+                 alt="Aircraft takeoff premium">
+            <div class="absolute inset-0 bg-gradient-to-r from-white/85 via-white/40 to-white/0"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AIRLINES (real logo slider) -->
+  <section id="airlines" class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900">Airline partners</h2>
+        <p class="text-slate-600 mt-3">Indian airlines first — then global partners</p>
+      </div>
+
+      <div class="slider-wrap">
+        <button class="slider-btn left" onclick="slideLogos(-1)" aria-label="Previous">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="slider-btn right" onclick="slideLogos(1)" aria-label="Next">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <div id="logoSlider" class="slider"></div>
+
+        <div class="mt-6 flex items-center justify-center gap-4">
+          <button class="btn-primary" onclick="openEnquiry('Flight Booking')">Book Now</button>
+          <button class="btn-soft" onclick="openEnquiry('Multi-city Quote')">Multi-city Quote</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOOGLE REVIEWS -->
+  <section id="reviews" class="dark-band py-14 md:py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/5 font-extrabold text-white/90">
+          <i class="fa-solid fa-star"></i> Reviews
+        </div>
+        <h2 class="text-4xl md:text-6xl font-extrabold mt-6">What clients say</h2>
+        <p class="text-white/70 mt-3 text-lg">Verified feedback from Google.</p>
+      </div>
+
+      <div class="mt-10 grid lg:grid-cols-2 gap-6 items-stretch">
+        <div class="dark-card p-8">
+          <div class="text-[#ffdd7a] font-extrabold text-lg">★★★★★</div>
+          <div class="mt-5 font-extrabold text-2xl">Trusted by travellers</div>
+          <div class="text-white/70 mt-4 text-lg">
+            Clean coordination, transparent communication, and quick support.
+          </div>
+
+          <div class="mt-8 flex gap-4 flex-wrap">
+            <button class="btn-primary" onclick="openEnquiry('Flight Booking')">Enquire Now</button>
+            <a class="btn-soft text-white border-white/20 bg-white/10 hover:bg-white/15"
+               href="https://google.com/maps/place/Matrubai+Travels/data=!4m2!3m1!1s0x0:0x26cb7dc583979d4e"
+               target="_blank" rel="noreferrer">
+              View on Google <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="dark-card overflow-hidden">
+          <iframe
+            title="Google Reviews - Matrubai Travels"
+            src="https://www.google.com/maps?cid=2796928702767547726&output=embed"
+            width="100%"
+            height="420"
+            style="border:0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (UNCHANGED) -->
+  <footer class="footer-premium pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-10">
+
+        <div>
+          <div class="flex items-center gap-3">
+            <img src="https://raw.githubusercontent.com/matrubaitravels/Travels/refs/heads/master/logo-1.jpeg"
+                 class="w-12 h-12 rounded-full bg-white p-1 object-cover border border-slate-200" alt="Logo"/>
+            <div>
+              <div class="text-xl font-extrabold text-slate-900">Matrubai Travels</div>
+              <div class="text-slate-600 text-sm font-semibold">Travel Smart. Travel Easy.</div>
+            </div>
+          </div>
+          <p class="text-slate-600 mt-4 font-semibold leading-relaxed">
+            Flights, curated packages, hotel reservations, premium buses and cab services — coordinated smoothly from Bangalore.
+          </p>
+          <div class="mt-5">
+            <button class="btn-primary" onclick="openEnquiry('Get Quote')">
+              Get Quote <i class="fa-solid fa-bolt"></i>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="f-title gold mb-4">Services</div>
+          <div class="grid gap-3">
+            <a class="f-link" href="#flights">Flights</a>
+            <a class="f-link" href="packages.html">Packages</a>
+            <a class="f-link" href="hotels.html">Hotels</a>
+            <a class="f-link" href="buses.html">Buses</a>
+            <a class="f-link" href="passport.html">Passport (Coming soon)</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="f-title gold mb-4">Company</div>
+          <div class="grid gap-3">
+            <a class="f-link" href="about.html">About</a>
+            <a class="f-link" href="enquire.html">Contact</a>
+            <a class="f-link" href="#reviews">Reviews</a>
+            <a class="f-link" href="#" onclick="openEnquiry('Corporate Booking')">Corporate Booking</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="f-title gold mb-4">Contact</div>
+          <div class="grid gap-3 text-slate-700 font-semibold">
+            <div><i class="fa-solid fa-phone mr-2 text-amber-600"></i> +91 7892991040</div>
+            <div><i class="fa-solid fa-envelope mr-2 text-amber-600"></i> support@matrubaitravels.com</div>
+            <div><i class="fa-brands fa-instagram mr-2 text-amber-600"></i> matrubaitravels</div>
+          </div>
+          <div class="mt-5 flex gap-3">
+            <button class="btn-soft" onclick="openEnquiry('WhatsApp Support')">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </button>
+            <button class="btn-soft" onclick="openEnquiry('Call Back Request')">
+              <i class="fa-solid fa-headset"></i> Call Back
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-3 text-slate-600 font-semibold">
+        <div>© 2026 Matrubai Travels</div>
+        <div>Premium travel solutions</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openEnquiry(serviceName){
+      window.location.href = "enquire.html?package=" + encodeURIComponent(serviceName);
+    }
+    function toggleMobileNav(){
+      const el = document.getElementById("mobileNav");
+      el.classList.toggle("hidden");
+    }
+
+    // Hero slider
+    const slides = Array.from(document.querySelectorAll(".hero-slide"));
+    let slideIndex = 0;
+    setInterval(() => {
+      slides[slideIndex].classList.remove("active");
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add("active");
+    }, 3000);
+
+    // Airline slider arrows
+    function slideLogos(dir){
+      const s = document.getElementById("logoSlider");
+      s.scrollLeft += dir * 320;
+    }
+
+    // ===== REAL LOGOS FIX (Clearbit + backup) =====
+    const airlines = [
+      // Indian first
+      { name:"IndiGo", domain:"goindigo.in" },
+      { name:"Air India", domain:"airindia.com" },
+      { name:"Air India Express", domain:"airindiaexpress.com" },
+      { name:"Akasa Air", domain:"akasaair.com" },
+      { name:"SpiceJet", domain:"spicejet.com" },
+
+      // then global (your list)
+      { name:"Emirates", domain:"emirates.com" },
+      { name:"Qatar Airways", domain:"qatarairways.com" },
+      { name:"Turkish Airlines", domain:"turkishairlines.com" },
+      { name:"Singapore Airlines", domain:"singaporeair.com" },
+      { name:"British Airways", domain:"britishairways.com" },
+      { name:"Lufthansa", domain:"lufthansa.com" },
+      { name:"SWISS", domain:"swiss.com" },
+      { name:"Austrian Airlines", domain:"austrian.com" },
+      { name:"Finnair", domain:"finnair.com" },
+      { name:"Iberia", domain:"iberia.com" },
+      { name:"Air Canada", domain:"aircanada.com" },
+      { name:"American Airlines", domain:"aa.com" },
+      { name:"United Airlines", domain:"united.com" },
+      { name:"Qantas", domain:"qantas.com" },
+      { name:"EgyptAir", domain:"egyptair.com" },
+      { name:"Ethiopian Airlines", domain:"ethiopianairlines.com" },
+      { name:"Bangkok Airways", domain:"bangkokair.com" }
+    ];
+
+    function makeLogoCard(a){
+      // ✅ keep your existing card, but allow name under logo
+      const wrap = document.createElement("div");
+      wrap.className = "logo-card";
+      wrap.style.flexDirection = "column";
+      wrap.style.justifyContent = "center";
+      wrap.style.gap = "0px";
+
+      const img = document.createElement("img");
+      img.loading = "lazy";
+      img.alt = a.name + " logo";
+
+      // Primary (real logo)
+      const primary = `https://logo.clearbit.com/${a.domain}`;
+
+      // Backup (also real logo source)
+      const backup = `https://www.google.com/s2/favicons?domain=${a.domain}&sz=128`;
+
+      img.src = primary;
+
+      img.onerror = () => {
+        // If Clearbit fails, use backup favicon (still real brand asset)
+        img.onerror = null;
+        img.src = backup;
+        img.style.maxHeight = "56px";
+        img.style.maxWidth = "56px";
+      };
+
+      // ✅ ONLY ADDITION: name below
+      const name = document.createElement("div");
+      name.className = "logo-name";
+      name.textContent = a.name;
+
+      wrap.appendChild(img);
+      wrap.appendChild(name);
+      return wrap;
+    }
+
+    const slider = document.getElementById("logoSlider");
+    airlines.forEach(a => slider.appendChild(makeLogoCard(a)));
+  </script>
+
+</body>
+</html>

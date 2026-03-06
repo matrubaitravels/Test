@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrubai Travels | Buses</title>
+
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --gold-1:#f59e0b;
+      --gold-2:#fbbf24;
+      --ink:#0b1220;
+      --muted:#54606f;
+      --card-border:rgba(15,23,42,.08);
+      --shadow: 0 18px 55px rgba(2,6,23,.08);
+    }
+    html{ scroll-behavior:smooth; }
+    body{
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(59,130,246,0.10), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(245,158,11,0.12), transparent 55%),
+        linear-gradient(180deg, #f6f7fb 0%, #ffffff 40%, #ffffff 100%);
+    }
+
+    /* Sticky nav */
+    .nav-glass{
+      background: rgba(255,255,255,0.76);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(15,23,42,0.08);
+      box-shadow: 0 18px 50px rgba(2,6,23,0.10);
+    }
+
+    /* Cards */
+    .p-card{
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow: var(--shadow);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .p-card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 26px 70px rgba(2,6,23,0.12);
+      border-color: rgba(245,158,11,0.28);
+    }
+
+    /* Buttons */
+    .btn-primary{
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+      color: #0b1220;
+      font-weight: 900;
+      border-radius: 999px;
+      padding: 12px 18px;
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+      box-shadow: 0 14px 40px rgba(245,158,11,0.22);
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      justify-content:center;
+      white-space:nowrap;
+    }
+    .btn-primary:hover{ transform: translateY(-2px); filter: brightness(1.03); box-shadow:0 18px 55px rgba(245,158,11,0.26); }
+
+    .btn-soft{
+      background: rgba(15,23,42,0.04);
+      border: 1px solid rgba(15,23,42,0.10);
+      color: rgba(15,23,42,0.92);
+      font-weight: 900;
+      border-radius: 999px;
+      padding: 12px 16px;
+      transition: transform .18s ease, background .18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      justify-content:center;
+      white-space:nowrap;
+    }
+    .btn-soft:hover{ transform: translateY(-2px); background: rgba(15,23,42,0.06); }
+
+    /* Badge */
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(2,6,23,0.05);
+      border: 1px solid rgba(2,6,23,0.10);
+      font-weight: 900;
+      font-size: 12px;
+      color: rgba(2,6,23,0.75);
+      letter-spacing: .02em;
+    }
+    .badge-gold{
+      background: rgba(245,158,11,0.14);
+      border: 1px solid rgba(245,158,11,0.28);
+    }
+
+    /* WhatsApp floating */
+    .sticky-whatsapp{
+      position:fixed;
+      bottom:18px;
+      right:18px;
+      background:#25D366;
+      color:white;
+      padding:14px 18px;
+      border-radius:999px;
+      box-shadow:0 14px 45px rgba(0,0,0,0.25);
+      z-index:9999;
+      font-weight:900;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .2s ease;
+    }
+    .sticky-whatsapp:hover{ transform: translateY(-2px); }
+
+    /* ===== FOOTER (KEEP AS IS STYLE) ===== */
+    .footer-premium{
+      background: linear-gradient(180deg, #f4f5f8 0%, #eef0f4 100%);
+      border-top: 1px solid rgba(15,23,42,0.10);
+      position:relative;
+    }
+    .footer-premium:before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height:3px;
+      background: linear-gradient(90deg, rgba(245,158,11,0.10), rgba(245,158,11,0.55), rgba(245,158,11,0.10));
+    }
+    .f-link{
+      color: rgba(15,23,42,0.72);
+      font-weight: 700;
+      transition: color .15s ease;
+    }
+    .f-link:hover{ color: rgba(15,23,42,0.95); text-decoration: underline; }
+    .f-title{
+      font-weight: 900;
+      letter-spacing:.02em;
+      color: rgba(15,23,42,0.92);
+    }
+    .f-title.gold{ color: rgba(245,158,11,0.95); }
+
+    /* Form inputs (premium) */
+    .inp{
+      width:100%;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(15,23,42,0.12);
+      border-radius: 16px;
+      padding: 12px 14px;
+      font-weight: 800;
+      color: rgba(15,23,42,0.90);
+      outline: none;
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    .inp:focus{
+      border-color: rgba(245,158,11,0.55);
+      box-shadow: 0 0 0 5px rgba(245,158,11,0.15);
+    }
+    .lbl{
+      font-size: 12px;
+      font-weight: 900;
+      color: rgba(15,23,42,0.70);
+      letter-spacing:.02em;
+      margin-bottom: 6px;
+      display:block;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,0.10);
+      background: rgba(15,23,42,0.04);
+      font-weight: 900;
+      color: rgba(15,23,42,0.88);
+      cursor:pointer;
+      user-select:none;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .chip:hover{ transform: translateY(-2px); background: rgba(15,23,42,0.06); }
+    .chip.active{
+      background: rgba(245,158,11,0.14);
+      border-color: rgba(245,158,11,0.35);
+    }
+
+    /* Section subtitle */
+    .subtle{
+      color: rgba(15,23,42,0.70);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing:.02em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/917892991040?text=Hi%20Matrubai%20Travels%2C%20I%20want%20bus%20booking%20options"
+     class="sticky-whatsapp" target="_blank" rel="noreferrer">
+    <i class="fab fa-whatsapp text-xl"></i> Chat Now
+  </a>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+      <div class="nav-glass rounded-2xl px-4 md:px-6 py-3 flex items-center justify-between gap-4">
+
+        <a href="index.html" class="flex items-center gap-3 min-w-[220px]">
+          <img src="https://raw.githubusercontent.com/matrubaitravels/Travels/refs/heads/master/logo-1.jpeg"
+               class="w-10 h-10 rounded-full bg-white p-1 object-cover" alt="Matrubai Travels logo">
+          <div class="leading-tight">
+            <div class="font-extrabold tracking-wide text-slate-900">Matrubai Travels</div>
+            <div class="text-xs text-slate-600">Travel Smart. Travel Easy.</div>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-7 font-extrabold text-slate-700">
+          <a href="index.html#flights" class="hover:text-slate-900 transition">Flights</a>
+          <a href="packages.html" class="hover:text-slate-900 transition">Packages</a>
+          <a href="hotels.html" class="hover:text-slate-900 transition">Hotels</a>
+          <a href="buses.html" class="text-slate-900">Buses</a>
+          <a href="services.html" class="hover:text-slate-900 transition">Services</a>
+          <a href="passport.html" class="hover:text-slate-900 transition">Passport</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button class="btn-soft hidden sm:inline-flex" onclick="openEnquiry('Get Quote')">
+            <i class="fa-solid fa-bolt"></i> Get Quote
+          </button>
+          <button class="btn-primary" onclick="openEnquiry('Bus Booking')">
+            Book Now <i class="fa-solid fa-rocket"></i>
+          </button>
+
+          <button class="lg:hidden btn-soft !px-4" onclick="toggleMobileNav()" aria-label="Open menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobileNav" class="hidden mt-3 nav-glass rounded-2xl p-4 lg:hidden">
+        <div class="grid gap-3 font-extrabold text-slate-800">
+          <a href="index.html#flights" class="py-2">Flights</a>
+          <a href="packages.html" class="py-2">Packages</a>
+          <a href="hotels.html" class="py-2">Hotels</a>
+          <a href="buses.html" class="py-2">Buses</a>
+          <a href="services.html" class="py-2">Services</a>
+          <a href="passport.html" class="py-2">Passport</a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+        <div>
+          <div class="badge badge-gold mb-4">
+            <i class="fa-solid fa-bus"></i>
+            Verified operators • Sleeper & AC • WhatsApp coordination
+          </div>
+
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
+            Premium <span class="text-amber-600">bus</span> bookings
+          </h1>
+
+          <p class="text-slate-600 mt-4 text-lg">
+            Bangalore to anywhere — AC / Non-AC • Sleeper • Volvo • Seater. One-click enquiry and fast confirmation.
+          </p>
+
+          <div class="mt-7 flex flex-col sm:flex-row gap-4">
+            <a href="#busSearch" class="btn-primary">
+              <i class="fa-solid fa-ticket"></i> Get Bus Quote
+            </a>
+            <button class="btn-soft" onclick="openEnquiry('Bus Route Enquiry')">
+              <i class="fa-solid fa-headset"></i> Talk to Advisor
+            </button>
+          </div>
+
+          <div class="mt-8 grid sm:grid-cols-3 gap-4 text-sm">
+            <div class="p-card p-4">
+              <div class="font-extrabold text-slate-900">Fast Response</div>
+              <div class="text-slate-600 mt-1">WhatsApp updates</div>
+            </div>
+            <div class="p-card p-4">
+              <div class="font-extrabold text-slate-900">Seat Preference</div>
+              <div class="text-slate-600 mt-1">Window / Lower</div>
+            </div>
+            <div class="p-card p-4">
+              <div class="font-extrabold text-slate-900">Best Options</div>
+              <div class="text-slate-600 mt-1">Verified operators</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-card !rounded-[28px] overflow-hidden">
+          <img class="w-full h-[360px] md:h-[520px] object-cover"
+               src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=2400&q=85"
+               alt="Premium bus booking hero"
+               loading="lazy" referrerpolicy="no-referrer">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BUS SEARCH / FILTERS -->
+  <section id="busSearch" class="py-10 md:py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="p-card !rounded-[28px] p-6 md:p-8">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+          <div>
+            <div class="badge badge-gold mb-3"><i class="fa-solid fa-sliders"></i> Search & Filters</div>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900">Find the best bus options</h2>
+            <p class="text-slate-600 mt-2 font-semibold">
+              Fill details → click “Get Quote” → we’ll confirm best operator + timing + fare.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <div class="chip active" data-chip="ac"><i class="fa-solid fa-snowflake"></i> AC</div>
+            <div class="chip" data-chip="nonac"><i class="fa-solid fa-wind"></i> Non-AC</div>
+            <div class="chip active" data-chip="sleeper"><i class="fa-solid fa-bed"></i> Sleeper</div>
+            <div class="chip" data-chip="seater"><i class="fa-solid fa-couch"></i> Seater</div>
+          </div>
+        </div>
+
+        <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-12 gap-4">
+          <div class="lg:col-span-3">
+            <label class="lbl">From</label>
+            <input id="fromCity" class="inp" placeholder="Bangalore" value="Bangalore" />
+          </div>
+
+          <div class="lg:col-span-3">
+            <label class="lbl">To</label>
+            <input id="toCity" class="inp" placeholder="Goa / Chennai / Hyderabad" />
+          </div>
+
+          <div class="lg:col-span-2">
+            <label class="lbl">Travel Date</label>
+            <input id="travelDate" type="date" class="inp" />
+          </div>
+
+          <div class="lg:col-span-2">
+            <label class="lbl">Passengers</label>
+            <select id="pax" class="inp">
+              <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+            </select>
+          </div>
+
+          <div class="lg:col-span-2">
+            <label class="lbl">Budget (optional)</label>
+            <select id="budget" class="inp">
+              <option value="">Any</option>
+              <option>Under ₹800</option>
+              <option>₹800 – ₹1,200</option>
+              <option>₹1,200 – ₹2,000</option>
+              <option>₹2,000+</option>
+            </select>
+          </div>
+
+          <div class="lg:col-span-4">
+            <label class="lbl">Preferred Departure Time</label>
+            <select id="timePref" class="inp">
+              <option value="">Any</option>
+              <option>Morning (5AM–11AM)</option>
+              <option>Afternoon (11AM–5PM)</option>
+              <option>Evening (5PM–10PM)</option>
+              <option>Night (10PM–5AM)</option>
+            </select>
+          </div>
+
+          <div class="lg:col-span-4">
+            <label class="lbl">Pickup Area (optional)</label>
+            <input id="pickup" class="inp" placeholder="Majestic / Silk Board / KR Puram" />
+          </div>
+
+          <div class="lg:col-span-4">
+            <label class="lbl">Drop Area (optional)</label>
+            <input id="drop" class="inp" placeholder="Panaji / Madgaon / Mapusa" />
+          </div>
+
+          <div class="lg:col-span-12 flex flex-col sm:flex-row items-center justify-between gap-4 mt-2">
+            <div class="subtle">
+              Tip: If you’re flexible with timings, we can fetch more options & better fares.
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <button class="btn-soft w-full sm:w-auto" onclick="openEnquiry('Bus Callback Request')">
+                <i class="fa-solid fa-phone"></i> Request Call Back
+              </button>
+              <button class="btn-primary w-full sm:w-auto" onclick="sendBusWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Get Quote on WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- POPULAR ROUTES -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <div class="badge badge-gold mb-3"><i class="fa-solid fa-fire"></i> Trending</div>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900">Popular routes</h2>
+        <p class="text-slate-600 mt-3 font-semibold">Tap route → it auto-fills the search box.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <button class="p-card p-6 text-left" onclick="prefillRoute('Bangalore','Goa')">
+          <div class="badge badge-gold"><i class="fa-solid fa-route"></i> Overnight</div>
+          <h3 class="text-xl font-extrabold text-slate-900 mt-4">Bangalore → Goa</h3>
+          <p class="text-slate-600 mt-2 font-semibold">AC Sleeper • Volvo options • Best for weekends</p>
+          <div class="mt-5">
+            <span class="subtle">Click to prefill</span>
+          </div>
+        </button>
+
+        <button class="p-card p-6 text-left" onclick="prefillRoute('Bangalore','Chennai')">
+          <div class="badge"><i class="fa-solid fa-route"></i> Frequent</div>
+          <h3 class="text-xl font-extrabold text-slate-900 mt-4">Bangalore → Chennai</h3>
+          <p class="text-slate-600 mt-2 font-semibold">Seater • Sleeper • Multiple departures</p>
+          <div class="mt-5">
+            <span class="subtle">Click to prefill</span>
+          </div>
+        </button>
+
+        <button class="p-card p-6 text-left" onclick="prefillRoute('Bangalore','Hyderabad')">
+          <div class="badge"><i class="fa-solid fa-route"></i> Fast</div>
+          <h3 class="text-xl font-extrabold text-slate-900 mt-4">Bangalore → Hyderabad</h3>
+          <p class="text-slate-600 mt-2 font-semibold">AC Sleeper • Night buses • Smooth ride</p>
+          <div class="mt-5">
+            <span class="subtle">Click to prefill</span>
+          </div>
+        </button>
+
+        <button class="p-card p-6 text-left" onclick="prefillRoute('Mumbai','Pune')">
+          <div class="badge badge-gold"><i class="fa-solid fa-route"></i> Short</div>
+          <h3 class="text-xl font-extrabold text-slate-900 mt-4">Mumbai → Pune</h3>
+          <p class="text-slate-600 mt-2 font-semibold">Multiple timings • Quick confirmation</p>
+          <div class="mt-5">
+            <span class="subtle">Click to prefill</span>
+          </div>
+        </button>
+
+        <button class="p-card p-6 text-left" onclick="prefillRoute('Bangalore','Mangalore')">
+          <div class="badge"><i class="fa-solid fa-route"></i> Coastal</div>
+          <h3 class="text-xl font-extrabold text-slate-900 mt-4">Bangalore → Mangalore</h3>
+          <p class="text-slate-600 mt-2 font-semibold">Sleeper • Night departures • Coastal plan</p>
+          <div class="mt-5">
+            <span class="subtle">Click to prefill</span>
+          </div>
+        </button>
+
+        <button class="p-card p-6 text-left" onclick="prefillRoute('Bangalore','Coimbatore')">
+          <div class="badge"><i class="fa-solid fa-route"></i> South</div>
+          <h3 class="text-xl font-extrabold text-slate-900 mt-4">Bangalore → Coimbatore</h3>
+          <p class="text-slate-600 mt-2 font-semibold">AC options • Comfortable seats</p>
+          <div class="mt-5">
+            <span class="subtle">Click to prefill</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-12 p-card !rounded-[28px] overflow-hidden">
+        <div class="grid lg:grid-cols-2">
+          <div class="p-8 md:p-10">
+            <div class="badge badge-gold mb-4"><i class="fa-solid fa-circle-check"></i> Ready to book?</div>
+            <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900">Get your bus seats confirmed</h3>
+            <p class="text-slate-600 mt-3 text-lg">Operator options • Timing • Boarding points • Final fare</p>
+
+            <div class="mt-7 flex flex-col sm:flex-row gap-4">
+              <button class="btn-primary" onclick="openEnquiry('Bus Booking')">Book Bus <i class="fa-solid fa-bus"></i></button>
+              <button class="btn-soft" onclick="openEnquiry('Bus Quote')">Get Quote <i class="fa-solid fa-bolt"></i></button>
+            </div>
+
+            <div class="text-slate-500 mt-4 text-sm font-semibold">
+              Advisor follow-up • Transparent pricing • Smooth coordination
+            </div>
+          </div>
+
+          <div class="relative">
+            <img class="w-full h-full object-cover"
+                 src="https://images.unsplash.com/photo-1520106212299-d99c443e4568?auto=format&fit=crop&w=2400&q=85"
+                 alt="Comfortable bus ride"
+                 loading="lazy" referrerpolicy="no-referrer">
+            <div class="absolute inset-0 bg-gradient-to-r from-white/85 via-white/40 to-white/0"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER (same style) -->
+  <footer class="footer-premium pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-10">
+
+        <div>
+          <div class="flex items-center gap-3">
+            <img src="https://raw.githubusercontent.com/matrubaitravels/Travels/refs/heads/master/logo-1.jpeg"
+                 class="w-12 h-12 rounded-full bg-white p-1 object-cover border border-slate-200" alt="Logo"/>
+            <div>
+              <div class="text-xl font-extrabold text-slate-900">Matrubai Travels</div>
+              <div class="text-slate-600 text-sm font-semibold">Travel Smart. Travel Easy.</div>
+            </div>
+          </div>
+          <p class="text-slate-600 mt-4 font-semibold leading-relaxed">
+            Flights, curated packages, hotel reservations, premium buses and cab services — coordinated smoothly from Bangalore.
+          </p>
+          <div class="mt-5">
+            <button class="btn-primary" onclick="openEnquiry('Get Quote')">
+              Get Quote <i class="fa-solid fa-bolt"></i>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="f-title gold mb-4">Services</div>
+          <div class="grid gap-3">
+            <a class="f-link" href="index.html#flights">Flights</a>
+            <a class="f-link" href="packages.html">Packages</a>
+            <a class="f-link" href="hotels.html">Hotels</a>
+            <a class="f-link" href="buses.html">Buses</a>
+            <a class="f-link" href="passport.html">Passport (Coming soon)</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="f-title gold mb-4">Company</div>
+          <div class="grid gap-3">
+            <a class="f-link" href="about.html">About</a>
+            <a class="f-link" href="enquire.html">Contact</a>
+            <a class="f-link" href="index.html#reviews">Reviews</a>
+            <a class="f-link" href="#" onclick="openEnquiry('Corporate Booking')">Corporate Booking</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="f-title gold mb-4">Contact</div>
+          <div class="grid gap-3 text-slate-700 font-semibold">
+            <div><i class="fa-solid fa-phone mr-2 text-amber-600"></i> +91 7892991040</div>
+            <div><i class="fa-solid fa-envelope mr-2 text-amber-600"></i> support@matrubaitravels.com</div>
+            <div><i class="fa-brands fa-instagram mr-2 text-amber-600"></i> matrubaitravels</div>
+          </div>
+          <div class="mt-5 flex gap-3">
+            <button class="btn-soft" onclick="openEnquiry('WhatsApp Support')">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </button>
+            <button class="btn-soft" onclick="openEnquiry('Call Back Request')">
+              <i class="fa-solid fa-headset"></i> Call Back
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-3 text-slate-600 font-semibold">
+        <div>© 2026 Matrubai Travels</div>
+        <div>Premium travel solutions</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openEnquiry(serviceName){
+      window.location.href = "enquire.html?package=" + encodeURIComponent(serviceName);
+    }
+    function toggleMobileNav(){
+      const el = document.getElementById("mobileNav");
+      el.classList.toggle("hidden");
+    }
+
+    // Chips toggle
+    document.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('click', ()=> chip.classList.toggle('active'));
+    });
+
+    // Prefill route cards
+    function prefillRoute(from, to){
+      document.getElementById('fromCity').value = from;
+      document.getElementById('toCity').value = to;
+      document.getElementById('busSearch').scrollIntoView({behavior:'smooth'});
+    }
+
+    // WhatsApp quote from filters
+    function sendBusWhatsApp(){
+      const from = (document.getElementById('fromCity').value || '').trim();
+      const to = (document.getElementById('toCity').value || '').trim();
+      const date = document.getElementById('travelDate').value || 'Flexible';
+      const pax = document.getElementById('pax').value || '1';
+      const budget = document.getElementById('budget').value || 'Any';
+      const timePref = document.getElementById('timePref').value || 'Any';
+      const pickup = (document.getElementById('pickup').value || '').trim() || 'Any';
+      const drop = (document.getElementById('drop').value || '').trim() || 'Any';
+
+      const selected = Array.from(document.querySelectorAll('.chip.active'))
+        .map(x => x.textContent.replace(/\s+/g,' ').trim())
+        .join(', ') || 'Any';
+
+      const msg =
+`Hi Matrubai Travels,
+
+I want bus booking options.
+
+From: ${from}
+To: ${to}
+Date: ${date}
+Passengers: ${pax}
+
+Preferences: ${selected}
+Time: ${timePref}
+Budget: ${budget}
+
+Pickup: ${pickup}
+Drop: ${drop}
+
+Please share best operator + fare + boarding details.`;
+
+      const url = "https://wa.me/917892991040?text=" + encodeURIComponent(msg);
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
