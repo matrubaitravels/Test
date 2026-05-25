@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visa Services Bangalore | Dubai, Schengen, UK, USA, Singapore – Matrubai Travels</title>
+  <meta name="description" content="Visa services in Bangalore – Dubai, Singapore, Thailand, Schengen, UK & USA visa assistance. Document guidance, checklist & fast processing support – Matrubai Travels.">
+
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --gold-1:#f59e0b;
+      --gold-2:#fbbf24;
+      --ink:#0b1220;
+      --muted:#54606f;
+      --card-border:rgba(15,23,42,.08);
+      --shadow: 0 18px 55px rgba(2,6,23,.08);
+    }
+    html{ scroll-behavior:smooth; }
+    body{
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(59,130,246,0.10), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(245,158,11,0.12), transparent 55%),
+        linear-gradient(180deg, #f6f7fb 0%, #ffffff 40%, #ffffff 100%);
+    }
+
+    /* Sticky nav */
+    .nav-glass{
+      background: rgba(255,255,255,0.76);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(15,23,42,0.08);
+      box-shadow: 0 18px 50px rgba(2,6,23,0.10);
+    }
+
+    /* Cards */
+    .p-card{
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      overflow:hidden;
+      background:#fff;
+      box-shadow: var(--shadow);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .p-card:hover{ transform:translateY(-4px); box-shadow:0 28px 70px rgba(2,6,23,.13); border-color:rgba(245,158,11,0.3); }
+
+    /* Buttons */
+    .btn-primary{
+      background:linear-gradient(135deg,#f59e0b,#fbbf24);
+      font-weight:800;
+      border-radius:999px;
+      padding:12px 24px;
+      box-shadow:0 12px 30px rgba(245,158,11,0.3);
+      transition:0.2s;
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      justify-content:center;
+    }
+    .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 18px 40px rgba(245,158,11,0.4); }
+    .btn-outline{
+      border:2px solid var(--gold-1);
+      color:var(--gold-1);
+      font-weight:700;
+      border-radius:999px;
+      padding:11px 24px;
+      transition:0.2s;
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+    }
+    .btn-outline:hover{ background:var(--gold-1); color:#fff; transform:translateY(-2px); }
+
+    /* Hero overlay */
+    .hero-overlay{ background:linear-gradient(to right,rgba(0,0,0,0.65),rgba(0,0,0,0.2)); }
+
+    /* Sticky WhatsApp */
+    .sticky-whatsapp{
+      position:fixed;
+      bottom:18px;
+      right:18px;
+      background:#25D366;
+      color:white;
+      padding:14px 18px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.9rem;
+      box-shadow:0 8px 30px rgba(37,211,102,0.4);
+      z-index:999;
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      text-decoration:none;
+      transition:0.2s;
+    }
+    .sticky-whatsapp:hover{ transform:translateY(-2px); box-shadow:0 14px 40px rgba(37,211,102,0.5); }
+
+    /* Visa country cards */
+    .visa-card{
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      background:#fff;
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      overflow:hidden;
+    }
+    .visa-card:hover{ transform:translateY(-5px); box-shadow:0 28px 70px rgba(2,6,23,.13); border-color:rgba(245,158,11,0.4); }
+
+    /* Badge */
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      background:rgba(245,158,11,0.10);
+      color:#92400e;
+      border:1px solid rgba(245,158,11,0.25);
+      border-radius:999px;
+      padding:5px 14px;
+      font-size:.78rem;
+      font-weight:700;
+      letter-spacing:.03em;
+    }
+
+    /* Process steps */
+    .step-line::after{
+      content:'';
+      position:absolute;
+      top:22px;
+      left:calc(50% + 22px);
+      width:calc(100% - 44px);
+      height:2px;
+      background:linear-gradient(90deg,#f59e0b,#fbbf24);
+      opacity:0.3;
+    }
+
+    /* Form */
+    .form-input{
+      width:100%;
+      border:1.5px solid rgba(15,23,42,0.12);
+      border-radius:12px;
+      padding:12px 16px;
+      font-size:.95rem;
+      color:var(--ink);
+      background:#fafafa;
+      transition:0.2s;
+      outline:none;
+    }
+    .form-input:focus{ border-color:var(--gold-1); background:#fff; box-shadow:0 0 0 3px rgba(245,158,11,0.1); }
+    .form-label{ font-size:.85rem; font-weight:700; color:var(--ink); margin-bottom:6px; display:block; }
+
+    /* Checklist */
+    .check-item{ display:flex; align-items:flex-start; gap:.7rem; padding:8px 0; border-bottom:1px solid rgba(15,23,42,0.06); }
+    .check-item:last-child{ border-bottom:none; }
+
+    /* FAQ */
+    .faq-item{ border:1px solid var(--card-border); border-radius:14px; background:#fff; margin-bottom:10px; overflow:hidden; }
+    .faq-q{ width:100%; text-align:left; padding:16px 20px; font-weight:700; font-size:.95rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer; background:none; border:none; color:var(--ink); }
+    .faq-a{ padding:0 20px 16px; color:var(--muted); font-size:.92rem; line-height:1.6; display:none; }
+    .faq-item.open .faq-a{ display:block; }
+    .faq-item.open .faq-icon{ transform:rotate(180deg); }
+    .faq-icon{ transition:transform .2s; color:var(--gold-1); }
+
+    /* Animate on load */
+    @keyframes fadeUp{ from{ opacity:0; transform:translateY(24px); } to{ opacity:1; transform:translateY(0); } }
+    .fade-up{ animation:fadeUp .6s ease both; }
+    .delay-1{ animation-delay:.1s; }
+    .delay-2{ animation-delay:.2s; }
+    .delay-3{ animation-delay:.3s; }
+  </style>
+</head>
+<body>
+
+<!-- Sticky WhatsApp -->
+<a href="https://wa.me/917892991040?text=Hi%20Matrubai%20Travels%2C%20I%20need%20visa%20assistance" class="sticky-whatsapp" target="_blank">
+  <i class="fab fa-whatsapp text-xl"></i> Chat Now
+</a>
+
+<!-- NAV -->
+<nav class="nav-glass sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/index.html" class="flex items-center gap-2">
+      <img src="https://raw.githubusercontent.com/matrubaitravels/Travels/refs/heads/master/logo-1.jpeg" alt="Matrubai Travels logo" class="h-9 w-9 rounded-full object-cover"/>
+      <div>
+        <div class="font-black text-base leading-tight" style="color:var(--ink)">Matrubai Travels</div>
+        <div class="text-xs" style="color:var(--muted)">Travel Smart. Travel Easy.</div>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-semibold" style="color:var(--muted)">
+      <a href="/index.html#flights" class="hover:text-amber-500 transition">Flights</a>
+      <a href="/packages.html" class="hover:text-amber-500 transition">Packages</a>
+      <a href="/hotels.html" class="hover:text-amber-500 transition">Hotels</a>
+      <a href="/buses.html" class="hover:text-amber-500 transition">Buses</a>
+      <a href="/services.html" class="hover:text-amber-500 transition">Services</a>
+      <a href="/passport.html" class="hover:text-amber-500 transition">Passport</a>
+      <a href="/visa.html" class="text-amber-500 font-bold">Visa</a>
+    </div>
+    <a href="#visaForm" class="btn-primary text-white text-sm">Apply Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-[480px] flex items-center overflow-hidden">
+  <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=85"
+       alt="Visa services Bangalore" class="absolute inset-0 w-full h-full object-cover"/>
+  <div class="hero-overlay absolute inset-0"></div>
+  <div class="relative max-w-6xl mx-auto px-4 py-20">
+    <div class="fade-up max-w-2xl">
+      <div class="badge mb-4" style="background:rgba(245,158,11,0.2);color:#fff;border-color:rgba(245,158,11,0.5)">
+        <i class="fas fa-stamp"></i> Visa assistance • Self-operated • Bangalore
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black text-white leading-tight mb-4">
+        Visa services,<br/>made simple
+      </h1>
+      <p class="text-lg text-white/80 mb-8 max-w-xl">
+        Dubai • Singapore • Thailand • Schengen • UK • USA — we handle your documents, checklist & application end to end.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#visaForm" class="btn-primary text-white">Apply Now <i class="fas fa-arrow-right"></i></a>
+        <a href="https://wa.me/917892991040?text=Hi%20Matrubai%20Travels%2C%20I%20need%20visa%20assistance" class="btn-outline" style="border-color:#fff;color:#fff" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="border-y" style="border-color:var(--card-border);background:#fff">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-center md:justify-between gap-4 text-sm font-semibold" style="color:var(--muted)">
+    <span class="flex items-center gap-2"><i class="fas fa-file-alt text-amber-400"></i> Document Guidance</span>
+    <span class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-400"></i> Checklist Provided</span>
+    <span class="flex items-center gap-2"><i class="fas fa-clock text-amber-400"></i> Fast Processing</span>
+    <span class="flex items-center gap-2"><i class="fas fa-headset text-amber-400"></i> WhatsApp Support</span>
+    <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-amber-400"></i> Bangalore Based</span>
+  </div>
+</section>
+
+<!-- VISA COUNTRIES -->
+<section class="max-w-6xl mx-auto px-4 py-16" id="visas">
+  <div class="text-center mb-12">
+    <div class="badge mb-3"><i class="fas fa-globe"></i> Most Popular</div>
+    <h2 class="text-3xl font-black" style="color:var(--ink)">Visa services we offer</h2>
+    <p class="mt-2 text-sm" style="color:var(--muted)">Click "Apply Now" → enquiry opens with that visa selected</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- UAE -->
+    <div class="visa-card">
+      <div class="relative h-40 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"/>
+        <div class="absolute top-3 left-3 badge" style="background:rgba(0,0,0,0.6);color:#fbbf24;border-color:rgba(251,191,36,0.4)">🇦🇪 UAE / Dubai</div>
+        <div class="absolute top-3 right-3 badge" style="background:rgba(34,197,94,0.2);color:#fff;border-color:rgba(34,197,94,0.5)"><i class="fas fa-bolt text-xs"></i> High Demand</div>
+      </div>
+      <div class="p-5">
+        <h3 class="font-black text-lg mb-1">Dubai Tourist Visa</h3>
+        <p class="text-sm mb-3" style="color:var(--muted)">30 / 60 / 90 day options • Single & multiple entry</p>
+        <div class="mb-4">
+          <span class="text-xs font-semibold" style="color:var(--muted)">Our service fee (embassy fee extra)</span><br/>
+          <span class="text-xl font-black text-amber-500">₹1,500</span>
+        </div>
+        <a href="#visaForm" onclick="setVisa('UAE / Dubai Tourist Visa')" class="btn-primary text-white text-sm w-full">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Singapore -->
+    <div class="visa-card">
+      <div class="relative h-40 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"/>
+        <div class="absolute top-3 left-3 badge" style="background:rgba(0,0,0,0.6);color:#fbbf24;border-color:rgba(251,191,36,0.4)">🇸🇬 Singapore</div>
+      </div>
+      <div class="p-5">
+        <h3 class="font-black text-lg mb-1">Singapore Tourist Visa</h3>
+        <p class="text-sm mb-3" style="color:var(--muted)">30 day • Single entry • Leisure & business</p>
+        <div class="mb-4">
+          <span class="text-xs font-semibold" style="color:var(--muted)">Our service fee (embassy fee extra)</span><br/>
+          <span class="text-xl font-black text-amber-500">₹1,200</span>
+        </div>
+        <a href="#visaForm" onclick="setVisa('Singapore Tourist Visa')" class="btn-primary text-white text-sm w-full">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Thailand -->
+    <div class="visa-card">
+      <div class="relative h-40 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"/>
+        <div class="absolute top-3 left-3 badge" style="background:rgba(0,0,0,0.6);color:#fbbf24;border-color:rgba(251,191,36,0.4)">🇹🇭 Thailand</div>
+      </div>
+      <div class="p-5">
+        <h3 class="font-black text-lg mb-1">Thailand Tourist Visa</h3>
+        <p class="text-sm mb-3" style="color:var(--muted)">60 day • Single entry • TR visa</p>
+        <div class="mb-4">
+          <span class="text-xs font-semibold" style="color:var(--muted)">Our service fee (embassy fee extra)</span><br/>
+          <span class="text-xl font-black text-amber-500">₹1,000</span>
+        </div>
+        <a href="#visaForm" onclick="setVisa('Thailand Tourist Visa')" class="btn-primary text-white text-sm w-full">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Schengen -->
+    <div class="visa-card">
+      <div class="relative h-40 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"/>
+        <div class="absolute top-3 left-3 badge" style="background:rgba(0,0,0,0.6);color:#fbbf24;border-color:rgba(251,191,36,0.4)">🇪🇺 Schengen</div>
+        <div class="absolute top-3 right-3 badge" style="background:rgba(59,130,246,0.3);color:#fff;border-color:rgba(59,130,246,0.5)">26 Countries</div>
+      </div>
+      <div class="p-5">
+        <h3 class="font-black text-lg mb-1">Schengen Visa</h3>
+        <p class="text-sm mb-3" style="color:var(--muted)">France • Germany • Italy • Spain & more</p>
+        <div class="mb-4">
+          <span class="text-xs font-semibold" style="color:var(--muted)">Our service fee (embassy fee extra)</span><br/>
+          <span class="text-xl font-black text-amber-500">₹2,500</span>
+        </div>
+        <a href="#visaForm" onclick="setVisa('Schengen Visa')" class="btn-primary text-white text-sm w-full">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- UK -->
+    <div class="visa-card">
+      <div class="relative h-40 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"/>
+        <div class="absolute top-3 left-3 badge" style="background:rgba(0,0,0,0.6);color:#fbbf24;border-color:rgba(251,191,36,0.4)">🇬🇧 United Kingdom</div>
+      </div>
+      <div class="p-5">
+        <h3 class="font-black text-lg mb-1">UK Standard Visitor Visa</h3>
+        <p class="text-sm mb-3" style="color:var(--muted)">6 months • Tourism & business</p>
+        <div class="mb-4">
+          <span class="text-xs font-semibold" style="color:var(--muted)">Our service fee (embassy fee extra)</span><br/>
+          <span class="text-xl font-black text-amber-500">₹3,000</span>
+        </div>
+        <a href="#visaForm" onclick="setVisa('UK Standard Visitor Visa')" class="btn-primary text-white text-sm w-full">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- USA -->
+    <div class="visa-card">
+      <div class="relative h-40 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"/>
+        <div class="absolute top-3 left-3 badge" style="background:rgba(0,0,0,0.6);color:#fbbf24;border-color:rgba(251,191,36,0.4)">🇺🇸 USA</div>
+      </div>
+      <div class="p-5">
+        <h3 class="font-black text-lg mb-1">USA B1/B2 Tourist Visa</h3>
+        <p class="text-sm mb-3" style="color:var(--muted)">Tourism & business • DS-160 assistance</p>
+        <div class="mb-4">
+          <span class="text-xs font-semibold" style="color:var(--muted)">Our service fee (embassy fee extra)</span><br/>
+          <span class="text-xl font-black text-amber-500">₹3,500</span>
+        </div>
+        <a href="#visaForm" onclick="setVisa('USA B1/B2 Tourist Visa')" class="btn-primary text-white text-sm w-full">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-16" style="background:linear-gradient(135deg,#fffbeb,#fff)">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <div class="badge mb-3"><i class="fas fa-route"></i> Simple Process</div>
+      <h2 class="text-3xl font-black" style="color:var(--ink)">How it works</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="relative">
+        <div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-black text-lg mx-auto mb-4" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">1</div>
+        <h4 class="font-black mb-1">Enquire</h4>
+        <p class="text-sm" style="color:var(--muted)">Fill the form or WhatsApp us with your destination</p>
+      </div>
+      <div class="relative">
+        <div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-black text-lg mx-auto mb-4" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">2</div>
+        <h4 class="font-black mb-1">Get Checklist</h4>
+        <p class="text-sm" style="color:var(--muted)">We send you the exact documents required</p>
+      </div>
+      <div class="relative">
+        <div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-black text-lg mx-auto mb-4" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">3</div>
+        <h4 class="font-black mb-1">Submit Docs</h4>
+        <p class="text-sm" style="color:var(--muted)">Hand over or courier your documents to us</p>
+      </div>
+      <div>
+        <div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-black text-lg mx-auto mb-4" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">4</div>
+        <h4 class="font-black mb-1">Get Visa</h4>
+        <p class="text-sm" style="color:var(--muted)">We apply & update you. Passport returned with visa</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENT CHECKLISTS -->
+<section class="max-w-6xl mx-auto px-4 py-16" id="checklist">
+  <div class="text-center mb-12">
+    <div class="badge mb-3"><i class="fas fa-list-check"></i> Document Checklists</div>
+    <h2 class="text-3xl font-black" style="color:var(--ink)">What documents do you need?</h2>
+    <p class="mt-2 text-sm" style="color:var(--muted)">Click any country to see the checklist</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex flex-wrap gap-2 justify-center mb-8" id="checklistTabs">
+    <button onclick="showChecklist('uae')" class="tab-btn active-tab px-5 py-2 rounded-full text-sm font-bold border transition" data-tab="uae">🇦🇪 UAE</button>
+    <button onclick="showChecklist('sg')" class="tab-btn px-5 py-2 rounded-full text-sm font-bold border transition" data-tab="sg">🇸🇬 Singapore</button>
+    <button onclick="showChecklist('th')" class="tab-btn px-5 py-2 rounded-full text-sm font-bold border transition" data-tab="th">🇹🇭 Thailand</button>
+    <button onclick="showChecklist('sch')" class="tab-btn px-5 py-2 rounded-full text-sm font-bold border transition" data-tab="sch">🇪🇺 Schengen</button>
+    <button onclick="showChecklist('uk')" class="tab-btn px-5 py-2 rounded-full text-sm font-bold border transition" data-tab="uk">🇬🇧 UK</button>
+    <button onclick="showChecklist('usa')" class="tab-btn px-5 py-2 rounded-full text-sm font-bold border transition" data-tab="usa">🇺🇸 USA</button>
+  </div>
+
+  <div class="p-card max-w-2xl mx-auto p-6">
+    <!-- UAE -->
+    <div id="checklist-uae" class="checklist-panel">
+      <h3 class="font-black text-lg mb-4">🇦🇪 UAE / Dubai Tourist Visa</h3>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport (valid for 6+ months, min. 2 blank pages)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport size photo (white background, 35x45mm)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Confirmed return flight tickets</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Hotel booking confirmation</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Bank statement (last 3 months, min ₹50,000 balance)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Aadhaar card copy</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Travel insurance (recommended)</span></div>
+    </div>
+    <!-- Singapore -->
+    <div id="checklist-sg" class="checklist-panel hidden">
+      <h3 class="font-black text-lg mb-4">🇸🇬 Singapore Tourist Visa</h3>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport (valid 6+ months, min. 2 blank pages)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport size photo (white background)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Confirmed return flight tickets</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Hotel booking or letter of invitation</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Bank statement (last 3 months, min ₹75,000)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Income tax return (last 1 year) or salary slips</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Employment letter / business proof</span></div>
+    </div>
+    <!-- Thailand -->
+    <div id="checklist-th" class="checklist-panel hidden">
+      <h3 class="font-black text-lg mb-4">🇹🇭 Thailand Tourist Visa</h3>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport (valid 6+ months, min. 2 blank pages)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport size photo (4x6cm, white background)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Confirmed return flight tickets</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Hotel booking confirmation</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Bank statement (last 6 months, min ₹50,000)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Travel itinerary</span></div>
+    </div>
+    <!-- Schengen -->
+    <div id="checklist-sch" class="checklist-panel hidden">
+      <h3 class="font-black text-lg mb-4">🇪🇺 Schengen Visa</h3>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport (valid 3+ months beyond travel, 2 blank pages)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Schengen visa application form (signed)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">2 passport photos (35x45mm, white background)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Confirmed return flight tickets</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Hotel bookings for entire stay</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Travel insurance (min €30,000 cover) — MANDATORY</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Bank statement (last 6 months, min ₹1,50,000)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">ITR / salary slips (last 3 months)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Cover letter explaining trip purpose</span></div>
+    </div>
+    <!-- UK -->
+    <div id="checklist-uk" class="checklist-panel hidden">
+      <h3 class="font-black text-lg mb-4">🇬🇧 UK Standard Visitor Visa</h3>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport (valid for duration of stay)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Online UK visa application form (completed)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Biometric appointment at TLScontact Bangalore</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Bank statement (last 6 months, min ₹2,00,000)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Flight & hotel bookings</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Employment letter / business ownership proof</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">ITR last 2 years</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Cover letter (purpose, itinerary, ties to India)</span></div>
+    </div>
+    <!-- USA -->
+    <div id="checklist-usa" class="checklist-panel hidden">
+      <h3 class="font-black text-lg mb-4">🇺🇸 USA B1/B2 Tourist Visa</h3>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport (valid 6+ months beyond travel)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">DS-160 online application form (completed)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Visa interview appointment at US Embassy/Consulate</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">MRV fee payment receipt</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Passport size photo (5x5cm, white background)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Bank statement (last 6 months)</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">ITR last 3 years</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Employment / business proof</span></div>
+      <div class="check-item"><i class="fas fa-check-circle text-amber-400 mt-0.5 flex-shrink-0"></i><span class="text-sm">Ties to India (property, family, job) — very important</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISA ENQUIRY FORM -->
+<section class="py-16" style="background:linear-gradient(135deg,#fffbeb,#fff)" id="visaForm">
+  <div class="max-w-2xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <div class="badge mb-3"><i class="fas fa-paper-plane"></i> Apply Now</div>
+      <h2 class="text-3xl font-black" style="color:var(--ink)">Submit your visa enquiry</h2>
+      <p class="mt-2 text-sm" style="color:var(--muted)">Fill your details — our advisor will contact you within 2 hours</p>
+    </div>
+
+    <div class="p-card p-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+          <label class="form-label">Full Name *</label>
+          <input type="text" class="form-input" placeholder="Your full name" id="visaName"/>
+        </div>
+        <div>
+          <label class="form-label">Phone Number *</label>
+          <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX" id="visaPhone"/>
+        </div>
+        <div>
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="your@email.com" id="visaEmail"/>
+        </div>
+        <div>
+          <label class="form-label">Visa Type *</label>
+          <select class="form-input" id="visaType">
+            <option value="">Select visa</option>
+            <option>UAE / Dubai Tourist Visa</option>
+            <option>Singapore Tourist Visa</option>
+            <option>Thailand Tourist Visa</option>
+            <option>Schengen Visa</option>
+            <option>UK Standard Visitor Visa</option>
+            <option>USA B1/B2 Tourist Visa</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Number of Travellers</label>
+          <input type="number" class="form-input" placeholder="1" min="1" id="visaTravellers"/>
+        </div>
+        <div>
+          <label class="form-label">Travel Date (approx)</label>
+          <input type="date" class="form-input" id="visaDate"/>
+        </div>
+        <div class="md:col-span-2">
+          <label class="form-label">Additional Notes</label>
+          <textarea class="form-input" rows="3" placeholder="Any specific requirements or questions..." id="visaNotes"></textarea>
+        </div>
+      </div>
+
+      <div class="mt-6 p-4 rounded-xl text-sm" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);color:var(--muted)">
+        <i class="fas fa-info-circle text-amber-400 mr-2"></i>
+        <strong>Note:</strong> Visa approval is at the sole discretion of the respective embassy. We assist with documentation & application — we do not guarantee approval. Embassy fees are non-refundable.
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a href="https://wa.me/917892991040?text=Hi%20Matrubai%20Travels%2C%20I%20need%20visa%20assistance" target="_blank" class="btn-primary text-white flex-1 justify-center">
+          <i class="fab fa-whatsapp"></i> WhatsApp Now
+        </a>
+        <a href="tel:+917892991040" class="btn-outline flex-1 justify-center">
+          <i class="fas fa-phone"></i> Call Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-3xl mx-auto px-4 py-16">
+  <div class="text-center mb-10">
+    <div class="badge mb-3"><i class="fas fa-question-circle"></i> FAQs</div>
+    <h2 class="text-3xl font-black" style="color:var(--ink)">Frequently asked questions</h2>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      How long does visa processing take? <i class="fas fa-chevron-down faq-icon"></i>
+    </button>
+    <div class="faq-a">It depends on the country. UAE & Singapore take 3–7 days. Schengen & UK take 15–21 days. USA varies by interview availability. We always advise applying at least 4–6 weeks before travel.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      What is your service fee? <i class="fas fa-chevron-down faq-icon"></i>
+    </button>
+    <div class="faq-a">Our service fee starts from ₹1,000 for Thailand and goes up to ₹3,500 for USA. This is separate from the embassy fee which is paid directly. We give you a full cost breakdown before you commit.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Can you guarantee visa approval? <i class="fas fa-chevron-down faq-icon"></i>
+    </button>
+    <div class="faq-a">No agent can legally guarantee visa approval — it is at the embassy's sole discretion. What we guarantee is that your application is complete, accurate, and professionally presented to maximise your chances.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      What if my visa gets rejected? <i class="fas fa-chevron-down faq-icon"></i>
+    </button>
+    <div class="faq-a">Embassy fees are non-refundable in case of rejection. Our service fee is also non-refundable as the work has been completed. We will advise you on reapplication options and what to strengthen.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      Do I need to visit your office? <i class="fas fa-chevron-down faq-icon"></i>
+    </button>
+    <div class="faq-a">For most visas, you can send documents by courier. For UK & USA, the applicant must appear in person at the visa centre / embassy for biometrics and interview. We guide you through every step.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t py-10" style="border-color:var(--card-border);background:#fff">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <img src="https://raw.githubusercontent.com/matrubaitravels/Travels/refs/heads/master/logo-1.jpeg" alt="Logo" class="h-9 w-9 rounded-full object-cover"/>
+          <div>
+            <div class="font-black">Matrubai Travels</div>
+            <div class="text-xs" style="color:var(--muted)">Travel Smart. Travel Easy.</div>
+          </div>
+        </div>
+        <p class="text-sm" style="color:var(--muted)">Flights, visa services, curated packages, hotels, buses and cab services — coordinated smoothly from Bangalore.</p>
+      </div>
+      <div>
+        <h4 class="font-black mb-3">Services</h4>
+        <div class="flex flex-col gap-1 text-sm" style="color:var(--muted)">
+          <a href="/index.html#flights" class="hover:text-amber-500">Flights</a>
+          <a href="/packages.html" class="hover:text-amber-500">Tour Packages</a>
+          <a href="/hotels.html" class="hover:text-amber-500">Hotels</a>
+          <a href="/visa.html" class="hover:text-amber-500">Visa Services</a>
+          <a href="/passport.html" class="hover:text-amber-500">Passport Assistance</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-black mb-3">Contact</h4>
+        <div class="flex flex-col gap-2 text-sm" style="color:var(--muted)">
+          <a href="tel:+917892991040" class="flex items-center gap-2 hover:text-amber-500"><i class="fas fa-phone text-amber-400"></i> +91 7892991040</a>
+          <a href="mailto:support@matrubaitravels.com" class="flex items-center gap-2 hover:text-amber-500"><i class="fas fa-envelope text-amber-400"></i> support@matrubaitravels.com</a>
+          <a href="https://wa.me/917892991040" target="_blank" class="flex items-center gap-2 hover:text-amber-500"><i class="fab fa-whatsapp text-amber-400"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t pt-6 text-center text-sm" style="border-color:var(--card-border);color:var(--muted)">
+      © 2026 Matrubai Travels • Premium travel solutions
+    </div>
+  </div>
+</footer>
+
+<style>
+  .active-tab{ background:linear-gradient(135deg,#f59e0b,#fbbf24); color:#fff; border-color:transparent; }
+  .tab-btn:not(.active-tab){ background:#fff; color:var(--muted); border-color:var(--card-border); }
+  .tab-btn:not(.active-tab):hover{ border-color:#f59e0b; color:#f59e0b; }
+</style>
+
+<script>
+  // Set visa type from card click
+  function setVisa(type){
+    setTimeout(()=>{ document.getElementById('visaType').value = type; }, 100);
+  }
+
+  // Checklist tabs
+  function showChecklist(tab){
+    document.querySelectorAll('.checklist-panel').forEach(p => p.classList.add('hidden'));
+    document.getElementById('checklist-'+tab).classList.remove('hidden');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
+    document.querySelector('[data-tab="'+tab+'"]').classList.add('active-tab');
+  }
+
+  // FAQ toggle
+  function toggleFaq(btn){
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+
+</script>
+
+</body>
+</html>
